@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>QRQC Issues Table</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container row " style="min-height: 400px;">
+        <h1>QRQC Issues</h1>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Açılış Tarihi</th>
+                    <th>Konuyu Açan Departman</th>
+                    <th>Sorumlu Departman</th>
+                    <th>Müşteri Şikayeti</th>
+                    <th>Ürün Adı</th>
+                    <th>Açıklama</th>
+                    <th>Sorumlu Kişi</th>
+                    <th>Sonraki Rapor Tarihi</th>
+                    <th>Önlem/Kritik Nokta</th>
+                    <th>Kök Neden</th>
+                    <th>Uygulanan Aksiyon</th>
+                    <th>Hata Kanıtı Tespiti</th>
+                    <th>Çıkarımlar</th>
+                    <th>Aksiyon/Önlem</th>
+                    <th>Tahmini Kapatma Tarihi</th>
+                    <th>Gerçekleşen Kapatma Tarihi</th>
+                    <th>Müşterinin Kapatma Tarihi</th>
+                    <th>Genel Durum</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for issue in quality_issues %}
+                <tr>
+                    <td>{{ issue.open_date }}</td>
+                    <td>{{ issue.opening_department }}</td>
+                    <td>{{ issue.responsible_department }}</td>
+                    <td>{{ issue.customer_complaint }}</td>
+                    <td>{{ issue.product_name }}</td>
+                    <td>{{ issue.description }}</td>
+                    <td>{{ issue.responsible_person }}</td>
+                    <td>{{ issue.next_report_date }}</td>
+                    <td>{{ issue.preventive_action }}</td>
+                    <td>{{ issue.root_cause }}</td>
+                    <td>{{ issue.taken_action }}</td>
+                    <td>{{ issue.error_proofing_identification }}</td>
+                    <td>{{ issue.conclusions }}</td>
+                    <td>{{ issue.action_item }}</td>
+                    <td>{{ issue.estimated_closure_date }}</td>
+                    <td>{{ issue.actual_closure_date }}</td>
+                    <td>{{ issue.customer_closure_date }}</td>
+                    <td class="{% if issue.general_status == 'Green' %}bg-success{% elif issue.general_status == 'Red' %}bg-danger{% elif issue.general_status == 'Yellow' %}bg-warning{% else %}bg-light{% endif %}">
+                        {{ issue.general_status }}
+                    </td>
+                                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="container row ">
+        <h1>Completed Issues</h1>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Açılış Tarihi</th>
+                    <th>Konuyu Açan Departman</th>
+                    <th>Sorumlu Departman</th>
+                    <th>Müşteri Şikayeti</th>
+                    <th>Ürün Adı</th>
+                    <th>Açıklama</th>
+                    <th>Sorumlu Kişi</th>
+                    <th>Sonraki Rapor Tarihi</th>
+                    <th>Önlem/Kritik Nokta</th>
+                    <th>Kök Neden</th>
+                    <th>Uygulanan Aksiyon</th>
+                    <th>Hata Kanıtı Tespiti</th>
+                    <th>Çıkarımlar</th>
+                    <th>Aksiyon/Önlem</th>
+                    <th>Tahmini Kapatma Tarihi</th>
+                    <th>Gerçekleşen Kapatma Tarihi</th>
+                    <th>Müşterinin Kapatma Tarihi</th>
+                    <th>Genel Durum</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for completed in completed_issues %}
+                <tr>
+                    <td>{{ completed.opening_department }}</td>
+                    <td>{{ completed.responsible_department }}</td>
+                    <td>{{ completed.open_date }}</td>
+                    <td>{{ completed.customer_complaint }}</td>
+                    <td>{{ completed.product_name }}</td>
+                    <td>{{ completed.description }}</td>
+                    <td>{{ completed.responsible_person }}</td>
+                    <td>{{ completed.next_report_date }}</td>
+                    <td>{{ completed.preventive_action }}</td>
+                    <td>{{ completed.root_cause }}</td>
+                    <td>{{ completed.taken_action }}</td>
+                    <td>{{ completed.error_proofing_identification }}</td>
+                    <td>{{ completed.conclusions }}</td>
+                    <td>{{ completed.action_item }}</td>
+                    <td>{{ completed.estimated_closure_date }}</td>
+                    <td>{{ completed.actual_closure_date }}</td>
+                    <td>{{ completed.customer_closure_date }}</td>
+                    <td class="{% if completed.general_status == 'Green' %}bg-success{% elif completed.general_status == 'Red' %}bg-danger{% elif completed.general_status == 'Yellow' %}bg-warning{% else %}bg-light{% endif %}">
+                        {{ completed.general_status }}
+                    </td>
+                                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
