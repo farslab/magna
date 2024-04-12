@@ -5,7 +5,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    command: python manage.py runserver 0.0.0.0:8000
+    command: sh -c "python manage.py makemigrations && python manage.py migrate && export DJANGO_SUPERUSER_PASSWORD=admin && python manage.py createsuperuser --noinput --username admin --email admin@admin.com && python manage.py runserver 0.0.0.0:8000"
+
     volumes:
       - .:/code
     ports:
